@@ -89,6 +89,6 @@ To develop robust predictive models for credit card defaults using an American E
 
 ### 📫 How to Reach Me:
 * **Email:** [ranjithsaila08@gmail.com](mailto:ranjithsaila08@gmail.com)
-* **LinkedIn:** [Your LinkedIn Profile URL - *Please replace this*]
+* **LinkedIn:** [Your LinkedIn Profile URL - (https://www.linkedin.com/in/ranjith-kumar-saila-1708r)]
 
 ---
