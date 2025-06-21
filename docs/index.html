@@ -164,11 +164,23 @@
         .main-footer { padding: 2rem 0; text-align: center; color: var(--secondary-color); border-top: 1px solid var(--border-color); margin-top: 50px; }
 
         #back-to-top {
-            position: fixed; bottom: 20px; right: 20px; background: var(--primary-color);
-            color: var(--bg-color); width: 50px; height: 50px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; font-size: 1.5rem; z-index: 100;
-            opacity: 0; visibility: hidden; transform: translateY(20px);
+            position: fixed;
+            bottom: 20px;
+            left: 20px; /* Changed from right to left */
+            background: var(--primary-color);
+            color: var(--bg-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
             transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
         }
         #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
@@ -380,9 +392,9 @@
         <!-- Contact Section -->
         <section id="contact" class="fade-in">
             <div class="container">
-                <h2 class="section-title">Get In Touch</h2>
+                <h2 class="section-title">Let's Connect</h2>
                 <p>I'm currently seeking new opportunities and would love to hear from you. Whether you have a question or just want to connect, feel free to reach out!</p>
-                <a href="mailto:your-email@example.com" class="contact-btn">Say Hello</a>
+                <a href="https://www.linkedin.com/in/ranjith-kumar-saila-1708r/" target="_blank" class="contact-btn">Connect on LinkedIn</a>
             </div>
         </section>
 
@@ -529,4 +541,3 @@
     
 </body>
 </html>
-
