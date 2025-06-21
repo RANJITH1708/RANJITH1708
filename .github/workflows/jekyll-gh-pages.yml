@@ -1,4 +1,519 @@
-# Sample workflow for building and deploying a Jekyll site to GitHub Pages
+# FILE: _config.yml
+# This is your main configuration file. Edit your details here.
+
+title: Ranjith | Data & Business Analyst
+author: Ranjith
+description: >- # this means to ignore newlines until "baseurl:"
+  A results-driven Data and Business Analyst with a Master's degree in Business Analytics 
+  and hands-on experience in predictive modeling, data visualization, and web development. 
+  Passionate about leveraging data to solve complex business problems.
+baseurl: "" # the subpath of your site, e.g. /blog. For a user site, this is often blank.
+url: "https://ranjith1708.github.io" # your site's base URL.
+
+# Social Links
+github_username:  RANJITH1708
+linkedin_username: your-linkedin-profile # Replace with your LinkedIn profile name
+
+# Build settings
+theme: minima # A default theme, though we are overriding the style completely.
+plugins:
+  - jekyll-feed
+
+
+# --- End of _config.yml ---
+
+# ==============================================================================
+
+# FILE: index.html
+# This is the main page of your site. It loops through your data files.
+
+---
+layout: default
+---
+
+<!-- Hero Section -->
+<section id="hero">
+    <div class="container">
+        <h1>Hi, I'm <span>Ranjith</span></h1>
+        <p class="subtitle">A Data & Business Analyst transforming data into actionable insights.</p>
+        <div class="social-links">
+            <a href="https://github.com/{{ site.github_username }}" target="_blank" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="fade-in">
+    <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <p class="about-text">{{ site.description }}</p>
+    </div>
+</section>
+
+
+<!-- Projects Section -->
+<section id="projects" class="fade-in">
+    <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="grid-container">
+            {% for project in site.data.projects %}
+            <div class="card project-card">
+                <h3>{{ project.title }}</h3>
+                <p class="project-role">{{ project.role }}</p>
+                <p>{{ project.description }}</p>
+                <ul class="skills-list">
+                    {% for skill in project.skills %}
+                    <li>{{ skill }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ project.url }}" class="project-link" target="_blank">View on GitHub &rarr;</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Experience Section -->
+<section id="experience" class="fade-in">
+    <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+            {% for item in site.data.experience %}
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content card">
+                    <h3>{{ item.job_title }}</h3>
+                    <p class="company">{{ item.company }} | {{ item.duration }}</p>
+                    <ul>
+                        {% for point in item.points %}
+                        <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Education Section -->
+<section id="education" class="fade-in">
+    <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="grid-container">
+            {% for item in site.data.education %}
+            <div class="card education-card">
+                <h3>{{ item.degree }}</h3>
+                <p>{{ item.university }}</p>
+                <span class="duration">{{ item.duration }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="fade-in">
+    <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            {% for category in site.data.skills %}
+                <div class="skill-category">
+                     <h4>{{ category.category }}</h4>
+                     <div class="skills-grid">
+                        {% for skill in category.list %}
+                            <div class="skill-item">{{ skill }}</div>
+                        {% endfor %}
+                     </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+# --- End of index.html ---
+
+# ==============================================================================
+
+# FILE: _layouts/default.html
+# This is the main template for your site's pages.
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site.title }}</title>
+    <meta name="description" content="{{ site.description }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+
+<body>
+    {% include header.html %}
+    <main>
+        {{ content }}
+    </main>
+    {% include footer.html %}
+    
+    <script>
+      // Simple fade-in animation on scroll
+      const faders = document.querySelectorAll('.fade-in');
+      const appearOptions = {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px"
+      };
+      
+      const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) {
+            return;
+          } else {
+            entry.target.classList.add('visible');
+            appearOnScroll.unobserve(entry.target);
+          }
+        });
+      }, appearOptions);
+
+      faders.forEach(fader => {
+        appearOnScroll.observe(fader);
+      });
+    </script>
+</body>
+
+</html>
+
+
+# --- End of _layouts/default.html ---
+
+# ==============================================================================
+
+# FILE: _includes/header.html
+# The header/navigation for your site.
+
+<header class="main-header">
+    <div class="container">
+        <a href="#" class="logo">{{ site.author }}</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+# --- End of _includes/header.html ---
+
+# ==============================================================================
+
+# FILE: _includes/footer.html
+# The footer for your site.
+
+<footer class="main-footer">
+    <div class="container">
+        <p>&copy; {% now "Y" %} {{ site.author }}. All Rights Reserved.</p>
+    </div>
+</footer>
+
+# --- End of _includes/footer.html ---
+
+# ==============================================================================
+
+# FILE: _data/projects.yml
+# Add, remove, or edit your projects here.
+
+- title: "American Express Credit Card Default Prediction"
+  role: "Predictive Analytics and AI Capstone"
+  description: "Predicted credit card defaults focusing on migrant status. Cleaned and processed data, handling imbalances with under-sampling, and applied ML models like logistic regression, neural networks, and decision trees."
+  skills:
+    - SAS E-Miner
+    - Python
+    - Predictive Modeling
+    - Data Cleaning
+  url: "https://github.com/RANJITH1708/AMEX-Predicting-Credit-Card-Default-Risk"
+
+- title: "CeasPay Web Development"
+  role: "Full-Stack Web Application"
+  description: "Developed a secure portal for a financial services provider. Built the frontend with HTML/CSS/Bootstrap and the backend with Firebase Authentication and Cloud Firestore, including a role-based access admin portal."
+  skills:
+    - HTML
+    - CSS
+    - Bootstrap
+    - Firebase
+    - NoSQL
+  url: "https://github.com/RANJITH1708/CeasPay_Web_App"
+
+- title: "Oklahoma Crime Data Analysis"
+  role: "Data Analysis and Visualization"
+  description: "Analyzed 10 years of crime data. Built data pipelines from MySQL to Python for analysis and to Power BI for visualization. Achieved a 0.96 R² with a Random Forest predictive model for spatial trend analysis."
+  skills:
+    - Power BI
+    - Python
+    - MySQL
+    - VBA
+    - API Integration
+  url: "https://github.com/RANJITH1708/Oklahoma_Crime_Data"
+
+- title: "Wholesale Company DB Project"
+  role: "SQL Database Management"
+  description: "Designed and implemented a relational database to manage inventory, customers, and shipping logistics. Created SQL queries to analyze business data and built a schema with primary/foreign keys to ensure data integrity."
+  skills:
+    - MySQL
+    - Database Design
+    - SQL
+  url: "#" # Add a link if you have one
+
+# --- End of _data/projects.yml ---
+
+# ==============================================================================
+
+# FILE: _data/experience.yml
+# Add, remove, or edit your work experience here.
+
+- job_title: "Data Analyst"
+  company: "Edwisely · Full-time"
+  duration: "Aug 2020 - Jul 2022"
+  points:
+    - "Cleaned student engagement records and created visualizations using SQL, Python, and PowerBI to help optimize platform features."
+    - "Analyzed user behavior for 15,000+ learners, contributing to a project that improved student retention by 12%."
+    - "Automated reporting processes with Python, saving 8 hours monthly, and developed a KPI monitoring dashboard."
+
+- job_title: "Insurance Agent"
+  company: "Shriram Life Insurance · Internship"
+  duration: "May 2020 - Jul 2020"
+  points:
+    - "Drove sales by securing 9 new policies in three months through proactive client engagement."
+    - "Conducted needs assessments for over 30 clients, crafting customized financial solutions."
+
+- job_title: "Project Manager"
+  company: "Green Gang Arts · Part-time"
+  duration: "Mar 2018 - Jan 2020"
+  points:
+    - "Managed relationships with over 50 clients for custom art projects, ensuring satisfaction."
+    - "Coordinated project timelines and budgets using Microsoft Excel to ensure on-time delivery."
+
+- job_title: "Accounting Intern"
+  company: "John's Business School · Internship"
+  duration: "Mar 2019 - Jul 2019"
+  points:
+    - "Executed precise processing of monthly journal entries with 100% compliance."
+    - "Reconciled accounts receivable and payable, resolving discrepancies efficiently."
+
+# --- End of _data/experience.yml ---
+
+# ==============================================================================
+
+# FILE: _data/education.yml
+# Your education history.
+
+- degree: "Master's degree, Business Analytics"
+  university: "University of Central Oklahoma"
+  duration: "Aug 2022 - Dec 2024"
+
+- degree: "Bachelor of Business Administration, Business analytics"
+  university: "IBS Hyderabad"
+  duration: "2017 - 2020"
+
+# --- End of _data/education.yml ---
+
+# ==============================================================================
+
+# FILE: _data/skills.yml
+# Your skills, grouped by category.
+
+- category: "Data & Analytics"
+  list:
+    - Python
+    - SQL / MySQL
+    - Power BI
+    - SAS E-Miner
+    - Tableau
+    - Predictive Analytics
+    - Machine Learning
+    - Data Cleaning
+    - Data Visualization
+
+- category: "Web & Development"
+  list:
+    - HTML
+    - CSS
+    - Bootstrap
+    - Firebase
+    - NoSQL
+    - VBA
+    
+- category: "Business & Marketing"
+  list:
+    - Business Analytics
+    - Digital Marketing
+    - Financial Accounting
+    - Project Management
+    - Social Media Marketing
+
+- category: "Tools"
+  list:
+    - Microsoft Excel
+    - Microsoft PowerPoint
+    - Git & GitHub
+    - Vercel
+
+# --- End of _data/skills.yml ---
+
+# ==============================================================================
+
+# FILE: assets/css/style.css
+# The main stylesheet for your site.
+
+:root {
+    --bg-color: #0a0a1a;
+    --primary-color: #00f2ff;
+    --secondary-color: #8998b9;
+    --text-color: #e0e0e0;
+    --card-bg: rgba(20, 20, 40, 0.6);
+    --border-color: rgba(0, 242, 255, 0.2);
+    --glow-color: rgba(0, 242, 255, 0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    overflow-x: hidden;
+    background-image: radial-gradient(circle at 15% 50%, rgba(0, 242, 255, 0.08), transparent 35%),
+                      radial-gradient(circle at 85% 30%, rgba(137, 152, 185, 0.08), transparent 35%);
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+/* --- Header --- */
+.main-header {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+    background: rgba(10, 10, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+}
+.main-header .container { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+.logo { font-size: 1.5rem; font-weight: 700; color: #fff; text-decoration: none; }
+.main-nav ul { display: flex; list-style-type: none; }
+.main-nav a { color: var(--text-color); text-decoration: none; padding: 0.5rem 1rem; transition: color 0.3s, text-shadow 0.3s; }
+.main-nav a:hover { color: var(--primary-color); text-shadow: 0 0 10px var(--glow-color); }
+
+/* --- General Section Styling --- */
+section { padding: 120px 0; }
+.section-title {
+    text-align: center; font-size: 2.5rem; margin-bottom: 4rem; color: #fff;
+    font-weight: 600; position: relative;
+}
+.section-title::after {
+    content: ''; position: absolute; bottom: -15px; left: 50%;
+    transform: translateX(-50%); width: 60px; height: 3px;
+    background: var(--primary-color); border-radius: 2px;
+}
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* --- Hero Section --- */
+#hero {
+    height: 100vh; display: flex; align-items: center; text-align: center;
+    padding-top: 70px; /* Offset for header */
+}
+#hero .container { max-width: 800px; }
+#hero h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+#hero h1 span { color: var(--primary-color); }
+#hero .subtitle { font-size: 1.2rem; color: var(--secondary-color); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;}
+.social-links { display: flex; justify-content: center; gap: 1rem; }
+.social-links a { color: var(--secondary-color); text-decoration: none; transition: color 0.3s, transform 0.3s; }
+.social-links a:hover { color: var(--primary-color); transform: scale(1.1); }
+.social-links svg { width: 32px; height: 32px; }
+
+/* --- About Section --- */
+.about-text { max-width: 750px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: var(--secondary-color); }
+
+/* --- Card & Grid --- */
+.card {
+    background: var(--card-bg); border: 1px solid var(--border-color);
+    border-radius: 12px; padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative; overflow: hidden; height: 100%;
+}
+.card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.2), 0 0 20px var(--glow-color); }
+.grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+
+/* --- Projects Section --- */
+.project-card { display: flex; flex-direction: column; }
+.project-card h3 { color: var(--primary-color); margin-bottom: 0.5rem; }
+.project-role { color: var(--secondary-color); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic; }
+.project-card p { font-size: 0.95rem; color: var(--text-color); margin-bottom: 1.5rem; flex-grow: 1; }
+.project-card .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; margin-bottom: 1.5rem; }
+.project-card .skills-list li { background-color: rgba(0, 242, 255, 0.1); color: var(--primary-color); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
+.project-link { color: var(--primary-color); text-decoration: none; font-weight: 600; transition: transform 0.3s ease; margin-top: auto; }
+.project-link:hover { transform: translateX(5px); }
+
+/* --- Experience (Timeline) --- */
+.timeline { position: relative; max-width: 750px; margin: 0 auto; }
+.timeline::after {
+    content: ''; position: absolute; width: 3px; background-color: var(--border-color);
+    top: 0; bottom: 0; left: 15px;
+}
+.timeline-item { position: relative; margin-bottom: 2.5rem; padding-left: 50px; }
+.timeline-dot {
+    content: ''; position: absolute; width: 15px; height: 15px;
+    border-radius: 50%; background-color: var(--primary-color);
+    border: 3px solid var(--bg-color); top: 5px; left: 8px; z-index: 1;
+}
+.timeline-content h3 { color: #fff; }
+.timeline-content .company { color: var(--primary-color); font-weight: 600; margin-bottom: 0.5rem; }
+.timeline-content ul { padding-left: 1.2rem; color: var(--secondary-color); }
+.timeline-content ul li { margin-bottom: 0.5rem; }
+
+/* --- Education --- */
+.education-card { text-align: center; }
+.education-card h3 { color: var(--primary-color); }
+.education-card p { color: #fff; font-size: 1.1rem; margin-top: 0.5rem; }
+.education-card .duration { color: var(--secondary-color); font-style: italic; display: block; margin-top: 0.5rem; }
+
+/* --- Skills --- */
+.skills-container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 2rem; }
+.skill-category { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem 2rem; }
+.skill-category h4 { color: var(--primary-color); font-size: 1.2rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+.skills-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.skill-item { background-color: rgba(0, 242, 255, 0.1); color: var(--text-color); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; transition: all 0.3s ease; }
+.skill-item:hover { color: var(--primary-color); transform: translateY(-3px); }
+
+/* --- Footer --- */
+.main-footer { padding: 2rem 0; text-align: center; color: var(--secondary-color); border-top: 1px solid var(--border-color); margin-top: 50px; }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .main-nav ul { display: none; } /* Simple hiding for mobile, can be replaced with a hamburger menu */
+    #hero h1 { font-size: 2.5rem; }
+    #hero p.subtitle { font-size: 1rem; }
+    .section-title { font-size: 2rem; }
+    .timeline::after { left: 50%; transform: translateX(-50%); }
+    .timeline-item { padding-left: 0; text-align: center; }
+    .timeline-dot { left: 50%; transform: translateX(-50%); top: -35px; }
+}
+
+# --- End of assets/css/style.css ---
+
+# ==============================================================================
+
+# FILE: .github/workflows/jekyll.yml
+# This file tells GitHub how to build and deploy your site.
+
 name: Deploy Jekyll with GitHub Pages dependencies preinstalled
 
 on:
@@ -49,3 +564,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+# --- End of .github/workflows/jekyll.yml ---
