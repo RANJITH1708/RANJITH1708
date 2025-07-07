@@ -1,7 +1,6 @@
 # Hi there, I'm Ranjith Kumar Saila 👋
 
-🚀 MSBA Data Analyst | SQL | Python | Power BI. Forever curious, always learning. Passionate about crafting data-driven tools that serve humanity and contribute to a better world.
-
+🚀 MSBA Data Analyst | SQL | Python | Power BI. Forever curious, always learning.
 ---
 
 ### 🔧 Technologies & Skills
