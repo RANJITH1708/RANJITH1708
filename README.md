@@ -10,7 +10,7 @@
 * **Machine Learning:** Scikit-learn, SAS Miner (Decision Trees, Random Forests, Logistic Regression, Neural Networks, SVMs)
 * **Database Management:** Relational Databases, Database Design, Data Warehousing Concepts
 * **Data Quality & Governance:** Data Cleaning, Validation, Imputation, Outlier Treatment
-* **Web Development:** HTML, CSS, Bootstrap
+* **Web Development:** HTML, CSS, JS, Bootstrap
 * **Backend & Cloud:** Firebase (Authentication, Cloud Firestore), Vercel
 * **Business Acumen:** Business Analysis, Requirements Gathering, Stakeholder Collaboration, Project Management
 * **Other Tools:** Excel (Advanced Functions, VBA), Git, Location IQ (API)
