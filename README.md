@@ -13,4 +13,4 @@
 * **Web Development:** HTML, CSS, JS, Bootstrap
 * **Backend & Cloud:** Firebase (Authentication, Cloud Firestore), Vercel
 * **Business Acumen:** Business Analysis, Requirements Gathering, Stakeholder Collaboration, Project Management
-* **Other Tools:** Excel (Advanced Functions, VBA), Git, Location IQ (API)
+* **Other Tools:** Excel (Advanced Functions, VBA), Git, Location IQ (API), VS Code, Cursor
